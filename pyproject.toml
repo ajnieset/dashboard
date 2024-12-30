@@ -1,0 +1,16 @@
+[project]
+name = "dashboard"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiosqlite>=0.20.0",
+    "litestar[sqlalchemy,standard]>=2.13.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "isort>=5.13.2",
+    "ruff>=0.8.4",
+]
