@@ -1,3 +1,3 @@
-from .config import db_config, provide_transaction
+from .config import provide_transaction, sqlalchemy_config
 
-__all__ = ["db_config", "provide_transaction"]
+__all__ = ["provide_transaction", "sqlalchemy_config"]
