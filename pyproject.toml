@@ -15,6 +15,9 @@ dev-dependencies = [
     "ruff>=0.8.4",
 ]
 
+[tool.isort]
+extend_skip_glob = ["**/migrations/versions/*"]
+
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 exclude = [
