@@ -1,4 +1,5 @@
 from dataclasses import asdict, dataclass
+from hashlib import sha256
 
 from litestar import Router, delete, get, post
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -11,6 +12,7 @@ from src.repositories import UserRepository
 class UserCreate:
     email: str
     name: str
+    password: str
 
 
 @get("/")
@@ -27,8 +29,12 @@ async def get_user(user_id: int, db_session: AsyncSession) -> User:
 
 @post("/")
 async def create_user(data: UserCreate, db_session: AsyncSession) -> User:
+    password_hash = sha256(data.password.encode()).hexdigest()
     repo = UserRepository(session=db_session)
-    return await repo.add(User(**asdict(data)))
+    new_user = asdict(data)
+    new_user.pop("password")
+    new_user["password_hash"] = password_hash
+    return await repo.add(User(**new_user))
 
 
 @delete("/{user_id:int}")

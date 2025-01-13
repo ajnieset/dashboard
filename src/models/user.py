@@ -7,3 +7,4 @@ class User(BigIntAuditBase):
 
     email: Mapped[str] = mapped_column(unique=True)
     name: Mapped[str]
+    password_hash: Mapped[str]

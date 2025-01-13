@@ -6,7 +6,7 @@ from litestar.plugins.sqlalchemy import SQLAlchemyPlugin
 from litestar.utils.module_loader import module_to_os_path
 
 from .db import sqlalchemy_config
-from .routers import user_router
+from .routers import login_router, user_router
 
 DEFAULT_MODULE_NAME = "src"
 BASE_DIR: Final[Path] = module_to_os_path(DEFAULT_MODULE_NAME)
@@ -18,6 +18,6 @@ async def health() -> dict:
 
 
 app = Litestar(
-    [health, user_router],
+    [health, user_router, login_router],
     plugins=[SQLAlchemyPlugin(sqlalchemy_config)],
 )
